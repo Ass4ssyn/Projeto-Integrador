@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <style>
+            nav {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                display: flex;
+                align-items: center;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: #333;
+                margin-right: 15px;
+            }
+
+            .submenu {
+                display: flex;
+                align-items: center;
+            }
+
+            .submenu a {
+                margin-left: 10px; /* Distância entre os links no submenu */
+                margin-right: 0;  /* Remove margem direita extra */
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="/cadastro">Cadastrar Entrega</a>
+            <a href="/material/cadastro">Cadastrar Material</a>
+            <a href="/obra/cadastro">Cadastrar Proprietário e Obra</a>
+
+            <a href="/listaEntrega">Listar Entregas</a>
+            <a href="/estoque">Listar Estoque</a>
+        </nav>
+    </body>
+</html>

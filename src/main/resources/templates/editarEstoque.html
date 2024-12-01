@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <header class="menu-principal">
+            <nav>
+                <ul>
+                    <li><a href="/cadastro">Cadastrar Entrega</a></li>
+                    <li><a href="/material/cadastro">Cadastrar Material</a></li>
+                    <li><a href="/obra/cadastro">Cadastrar Proprietário e Obra</a></li>
+                    <li><a href="/listaEntrega">Listar Entregas</a></li>
+                    <li><a href="/estoque">Listar Estoque</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="container">
+            <form th:action="@{/estoque/atualizar}" method="post">
+                <input type="hidden" th:value="${estoque.id}" name="id"/>
+
+                <label for="material">Material:</label>
+                <select id="material" name="materialId" th:value="${estoque.material.id}">
+                    <option th:each="material : ${materiais}" th:value="${material.id}" th:text="${material.descricaoMaterial}" 
+                            th:selected="${material.id == estoque.material.id}">
+
+                    </option>
+                </select>
+
+                <label for="quantidade">Quantidade no Estoque:</label>
+                <input id="quantidade" type="number" step="0.01" th:value="${estoque.quantidadeEstoque}" name="quantidadeEstoque"/>
+
+                <label for="obra">Obra:</label>
+                <select id="obra" name="obraId" th:value="${estoque.obra.id}">
+                    <option th:each="obra : ${obras}" th:value="${obra.id}" th:text="${obra.nomeProprietario}" 
+                            th:selected="${obra.id == estoque.obra.id}"></option>
+                </select>
+
+                <button type="submit" class="btn btn-success">Atualizar</button>
+            </form>
+        </main>
+        <footer class="rodape">
+            <div class="social-media">
+                <a href="#">Fale Conosco</a>
+                <a href="#">WhatsApp</a>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+            </div>
+        </footer>
+    </body>
+</html>
