@@ -5,7 +5,11 @@
 package com.projint.Projeto.Integrador.controller;
 
 /**
- * 
+<<<<<<< HEAD
+
+=======
+ 
+>>>>>>> 42f385a1c8f00ce0f5a723f248a5f14c6d14e280
  * @author cirol
  */
 import com.projint.Projeto.Integrador.model.Estoque;
