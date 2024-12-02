@@ -1,0 +1,109 @@
+/* Estilo geral para o corpo e o layout */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Garante que o body ocupe a altura completa */
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa toda a altura da tela */
+}
+
+/* O conteúdo principal ocupa o espaço restante */
+.main-content {
+    flex: 1;
+}
+
+/* Menu Principal */
+.menu-principal {
+    background-color: #333333; /* Cinza bem escuro */
+    color: #FFA500; /* Laranja */
+    padding: 15px;
+}
+
+.menu-principal ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-principal li a {
+    text-decoration: none;
+    color: #FFA500;
+    font-weight: bold;
+}
+
+/* Container principal */
+.container {
+    flex: 1; /* Faz o container ocupar o espaço restante */
+    background-color: #F5F5F5; /* Cinza claro */
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    text-align: center;
+    color: #333333;
+    word-spacing: 5px; /* Espaçamento entre palavras */
+}
+
+.container > * {
+    margin-bottom: 20px; /* Espaçamento entre os elementos diretos do container */
+}
+
+.container > *:last-child {
+    margin-bottom: 0; /* Remove o espaçamento do último elemento */
+}
+
+.container a {
+    color: #2C2C2C; /* Cor dos links igual à cor do texto */
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+.container a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+.container button {
+    background-color: #FFA500;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container button:hover {
+    background-color: #FF8C00;
+}
+
+.rodape {
+    justify-content: space-around;
+    background-color: #333333; /* Mesmo tom do menu */
+    color: #FFA500;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #333;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    position: fixed;
+    width: 100%;
+}
+
+.rodape .social-media a {
+    text-decoration: none;
+    color: #FFA500;
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+.rodape .social-media a:hover {
+    color: #FF8C00;
+}
