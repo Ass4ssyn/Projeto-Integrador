@@ -63,9 +63,5 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/cadastro-login")
-    public String exibirCadastro() {
-        return "cadastroUsuario"; // Página de cadastro
-    }
 }
 

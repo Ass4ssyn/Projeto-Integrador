@@ -81,6 +81,11 @@ public class MenuController {
     public String Login(Model model) {
         return "login";
     }
+    
+    @GetMapping("/cadastro-login")
+    public String cadastroUser(Model model) {
+        return "cadastroUsuario";
+    }
 
     @GetMapping("/estoque")
 public String consultarEstoque(

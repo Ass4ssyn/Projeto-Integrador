@@ -2,23 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/login.css" />
 </head>
 <body>
-    <div class="login-container">
-        <img src="logo.png" alt="Logo">
-        <h1>Login</h1>
-        
-        <!-- Mensagem de erro -->
-        <p th:if="${erro}" th:text="${erro}" style="color: red;"></p>
-        
-        <form action="/login" method="post">
-            <input type="text" name="login" placeholder="Login" required>
-            <input type="password" name="senha" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-        </form>
-        
-        <p>Não possui cadastro? <a href="/cadastro-login">Cadastre-se aqui</a></p>
+    <div class="container">
+        <div class="left-panel">
+            <div class="welcome-message">
+                <h1>Welcome Back</h1>
+                <p>Nice to see you again! Access your account to continue your journey.</p>
+            </div>
+        </div>
+        <div class="right-panel">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>Login Account</h1>
+            
+            <!-- Mensagem de erro -->
+            <p th:if="${erro}" th:text="${erro}" class="error-message"></p>
+            
+            <form action="/login" method="post">
+                <input type="text" name="login" placeholder="Email ID" required>
+                <input type="password" name="senha" placeholder="Password" required>
+                <div class="options">
+                    <label><input type="checkbox" name="keepMeSignedIn"> Keep me signed in</label>
+                    <a href="/forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit">Subscribe</button>
+            </form>
+            
+            <p class="signup">Already a member? <a href="/cadastro-login">Sign up here</a></p>
+        </div>
     </div>
 </body>
 </html>
