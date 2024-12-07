@@ -7,13 +7,14 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4f4f4;
+    background: url('/css/imagens/cinza.jpg') no-repeat center center fixed;
+    background-size:cover;
 }
 
 /* Container principal */
 .container {
     display: flex;
-    width: 80%;
+    width: 100%;
     height: 600px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -22,8 +23,8 @@ body, html {
 
 /* Painel esquerdo */
 .left-panel {
-    width: 50%;
-    background: url('background-image.png') no-repeat center center;
+    width: 60%;
+    background: url('/css/imagens/usp.jpg') no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -31,6 +32,9 @@ body, html {
     color: white;
     text-align: center;
     padding: 20px;
+    /*white-space: nowrap; /* Evita quebra de linha */
+    /*overflow: hidden; /* Garante que textos longos não ultrapassem os limites */
+    /*text-overflow: ellipsis; /* Adiciona reticências caso o texto seja muito longo */
 }
 
 .left-panel h1 {
@@ -45,24 +49,29 @@ body, html {
 
 /* Painel direito */
 .right-panel {
-    width: 50%;
+    width: 40%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Alinha os elementos ao topo */
     align-items: center;
     padding: 40px;
 }
 
+.right-panel h1{
+    color: gray;
+    
+}
+
 .logo {
-    width: 100px;
-    margin-bottom: 20px;
+    width: 300px;
+    margin-bottom: 1px;
 }
 
 h1 {
     font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 10px;
+    color: white;
 }
 
 form {
@@ -71,6 +80,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-items: center;
 }
 
 form input {
@@ -82,7 +92,7 @@ form input {
 
 form button {
     padding: 10px;
-    background-color: #007bff;
+    background-color: orange;
     color: white;
     border: none;
     border-radius: 5px;
@@ -111,7 +121,7 @@ form button:hover {
 }
 
 .signup a {
-    color: #007bff;
+    color: orange;
     text-decoration: none;
 }
 

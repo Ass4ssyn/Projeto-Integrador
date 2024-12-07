@@ -8,13 +8,13 @@
     <div class="container">
         <div class="left-panel">
             <div class="welcome-message">
-                 <h1>Welcome Back</h1>
-                <p>Nice to see you again! Access your account to continue your journey.</p>
+                 <h1>Seja bem-vindo!</h1>
+                <p>Construa o seu amanhã tijolo por tijolo</p>
             </div>
         </div>
         <div class="right-panel">
-            <img src="logo.png" alt="Logo" class="logo">
-            <h1>Login Account</h1>
+            <img src="/css/imagens/logo1.png" alt="Logo" class="logo"> 
+            <h1>Login</h1>
             
             <!-- Mensagem de erro -->
             <p th:if="${erro}" th:text="${erro}" class="error-message"></p>
@@ -22,14 +22,14 @@
             <form action="/login" method="post">
                 <input type="text" name="login" placeholder="Email ID" required>
                 <input type="password" name="senha" placeholder="Password" required>
-                <div class="options">
+                <!--<div class="options">
                     <label><input type="checkbox" name="keepMeSignedIn"> Keep me signed in</label>
                     <a href="/forgot-password">Forgot Password?</a>
-                </div>
-                <button type="submit">Subscribe</button>
+                </div>-->
+                <button type="submit">Entrar</button>
             </form>
             
-            <p class="signup">Already a member? <a href="/cadastro-login">Sign up here</a></p>
+            <p class="signup">Ainda não tem uma conta? <a href="/cadastro-login">Clique aqui</a></p>
         </div>
     </div>
 </body>
