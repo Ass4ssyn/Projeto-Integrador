@@ -23,56 +23,68 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </ul>
             </nav>
         </header>
-        <main class="container">
-            <h2>Consultar Estoque</h2>
-            <form action="/estoque" method="get">
-                <label for="obra">Filtrar por obra:</label>
-                <input 
-                    type="text" 
-                    id="filtro" 
-                    name="filtro" 
-                    placeholder="Digite o nome ou a rua" 
-                    th:value="${filtro}">
-                <button type="submit">Filtrar</button>
-            </form>
+        <div class="page-wrapper">
+            <main class="container">
+                <h2>Consultar Estoque</h2>
+                <form action="/estoque" method="get">
+                    <label for="obra">Filtrar por obra:</label>
+                    <input 
+                        type="text" 
+                        id="filtro" 
+                        name="filtro" 
+                        placeholder="Digite o nome ou a rua" 
+                        th:value="${filtro}">
+                    <p></p>
+                    <button type="submit">Filtrar</button>
+                </form>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Material</th>
-                        <th>Quantidade</th>
-                        <th>Obra</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Quantidade</th>
+                            <th>Obra</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <div class="alert-popup" th:if="${alertasRepetidos != null and !alertasRepetidos.isEmpty()}">
+                        <ul>
+                            <li th:each="alerta : ${alertasRepetidos}" th:text="${alerta}"></li>
+                        </ul>
+                        <p>* Enquanto houverem estoques duplicados,<br> não será possível realizar o registro de entrega *</p>
+                    </div>
+
                     <tr th:each="estoque : ${estoques}">
                         <td th:text="${estoque.material.descricaoMaterial}">Material</td>
                         <td th:text="${estoque.quantidadeEstoque}">Quantidade</td>
                         <td th:text="${estoque.obra.nomeProprietario}">Obra</td>
                         <td>
-                            <a th:href="@{'/relatorioUso/' + ${estoque.id}}">Relatório de Uso</a>
-                        </td>
-                        <td>
-                            <a th:href="@{/estoque/editar/{id}(id=${estoque.id})}" class="btn btn-primary">Editar</a>
-                        </td>
-                        <td>
-                            <a th:href="@{/estoque/deletar/{id}(id=${estoque.id})}" class="btn btn-primary">Excluir</a>
+                            <!-- Botão Dropdown -->
+                            <div class="dropdown">
+                                <button class="dropbtn">&#x25BC;</button>
+                                <div class="dropdown-content">
+                                    <a th:href="@{'/relatorioUso/' + ${estoque.id}}">Relatório de Uso</a>
+                                    <a th:href="@{/estoque/editar/{id}(id=${estoque.id})}">Editar</a>
+                                    <a th:href="@{/estoque/deletar/{id}(id=${estoque.id})}">Excluir</a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
-                </tbody>
-            </table>
-            <div class="buttons-container">
-                <button onclick="location.href = '/menu'">Voltar ao Menu</button>
-            </div>
-        </main>
+                    </tbody>
+                </table>
+            </main>
 
-        <footer class="rodape">
-            <div class="social-media">
-                <a href="#">Fale Conosco</a>
-                <a href="#">WhatsApp</a>
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-            </div>
-        </footer>
+            <footer class="rodape">
+                <div class="social-media">
+                    <a href="#">Fale Conosco</a>
+                    <a href="#">WhatsApp</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </footer>
+        </div>
+        <script src="/js/script.js"></script>
     </body>
 </html>
