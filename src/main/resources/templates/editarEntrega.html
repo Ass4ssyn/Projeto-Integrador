@@ -22,6 +22,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </ul>
             </nav>
         </header>
+        <div class="page-wrapper">
         <main class="container">
             <form th:action="@{/entrega/atualizar}" method="post">
                 <input type="hidden" th:value="${entrega.id}" name="id"/>
@@ -43,7 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <option th:each="obra : ${obras}" th:value="${obra.id}" th:text="${obra.nomeProprietario}" 
                             th:selected="${obra.id == entrega.obra.id}"></option>
                 </select>
-
+                <p></p>
                 <button type="submit" class="btn btn-success">Atualizar</button>
             </form>
         </main>
@@ -55,5 +56,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <a href="#">Instagram</a>
             </div>
         </footer>
+            </div>
     </body>
 </html>
