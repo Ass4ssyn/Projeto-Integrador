@@ -22,28 +22,36 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </ul>
             </nav>
         </header>
+        <div class="page-wrapper">
         <main class="container">
-            <form th:action="@{/estoque/atualizar}" method="post">
+            <form th:action="@{/estoque/atualizar}" method="post" class="form-container">
                 <input type="hidden" th:value="${estoque.id}" name="id"/>
 
-                <label for="material">Material:</label>
-                <select id="material" name="materialId" th:value="${estoque.material.id}">
-                    <option th:each="material : ${materiais}" th:value="${material.id}" th:text="${material.descricaoMaterial}" 
-                            th:selected="${material.id == estoque.material.id}">
+                <div class="form-group">
+                    <label for="material">Material:</label>
+                    <select id="material" name="materialId" th:value="${estoque.material.id}">
+                        <option th:each="material : ${materiais}" th:value="${material.id}" th:text="${material.descricaoMaterial}" 
+                                th:selected="${material.id == estoque.material.id}"></option>
+                    </select>
+                </div>
 
-                    </option>
-                </select>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade no Estoque:</label>
+                    <input id="quantidade" type="number" step="0.01" th:value="${estoque.quantidadeEstoque}" name="quantidadeEstoque"/>
+                </div>
 
-                <label for="quantidade">Quantidade no Estoque:</label>
-                <input id="quantidade" type="number" step="0.01" th:value="${estoque.quantidadeEstoque}" name="quantidadeEstoque"/>
+                <div class="form-group">
+                    <label for="obra">Obra:</label>
+                    <select id="obra" name="obraId" th:value="${estoque.obra.id}">
+                        <option th:each="obra : ${obras}" th:value="${obra.id}" th:text="${obra.nomeProprietario}" 
+                                th:selected="${obra.id == estoque.obra.id}"></option>
+                    </select>
+                </div>
 
-                <label for="obra">Obra:</label>
-                <select id="obra" name="obraId" th:value="${estoque.obra.id}">
-                    <option th:each="obra : ${obras}" th:value="${obra.id}" th:text="${obra.nomeProprietario}" 
-                            th:selected="${obra.id == estoque.obra.id}"></option>
-                </select>
-
-                <button type="submit" class="btn btn-success">Atualizar</button>
+                <!-- Botão alinhado à direita -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Atualizar</button>
+                </div>
             </form>
         </main>
         <footer class="rodape">
@@ -54,5 +62,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <a href="#">Instagram</a>
             </div>
         </footer>
+            </div>
     </body>
 </html>
