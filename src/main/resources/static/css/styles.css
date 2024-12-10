@@ -2,7 +2,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%; /* Garante que o body ocupe a altura completa */
+    min-height: 100%; /* Garante que o body ocupe a altura completa */
     display: flex;
     flex-direction: column;
 }
@@ -10,7 +10,7 @@ html, body {
 .page-wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ocupa toda a altura da tela */
+    min-height: 100vh; /* Garante que a página ocupe 100% da altura da janela */
 }
 
 /* O conteúdo principal ocupa o espaço restante */
@@ -41,24 +41,28 @@ html, body {
 
 /* Container principal */
 .container {
-    flex: 1; /* Faz o container ocupar o espaço restante */
+    flex: 1; /* Permite que o container ocupe o espaço disponível */
     background-color: #F5F5F5; /* Cinza claro */
     margin: 20px auto;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 65%;
     max-width: 1200px;
     text-align: center;
     color: #333333;
     word-spacing: 5px; /* Espaçamento entre palavras */
+    margin-bottom: 30px;
+    
 }
+
 
 .container > * {
     margin-bottom: 20px; /* Espaçamento entre os elementos diretos do container */
 }
 
 .container > *:last-child {
-    margin-bottom: 0; /* Remove o espaçamento do último elemento */
+    margin-bottom: 0px; /* Remove o espaçamento do último elemento */
 }
 
 .container a {
@@ -83,18 +87,60 @@ html, body {
     background-color: #FF8C00;
 }
 
+/* Estilo do formulário principal */
+.form-container {
+    display: flex;
+    justify-content: space-between; /* Separa os campos e o botão */
+    align-items: flex-start; /* Alinha o botão ao topo */
+    flex-wrap: wrap; /* Permite que os campos e botão ajustem conforme o tamanho da tela */
+    gap: 20px; /* Espaçamento entre os elementos */
+    padding: 10px;
+}
+
+/* Agrupa os campos de entrada */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Coloca o label e o input um abaixo do outro */
+    flex: 1; /* Cada grupo ocupa espaço proporcional */
+    min-width: 300px; /* Define largura mínima para os campos */
+}
+
+/* Estilo para inputs e selects */
+input, select {
+    width: 100%; /* Faz o campo ocupar toda a largura do form-group */
+    padding: 10px; /* Espaçamento interno para maior conforto */
+    border: 1px solid #ccc; /* Borda padrão */
+    border-radius: 5px; /* Borda arredondada */
+    font-size: 1rem; /* Tamanho consistente */
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
+}
+
+/* Estilo do botão */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
+    width: 100%; /* Ocupa a largura total para garantir alinhamento */
+}
+
+button {
+    padding: 10px 20px; /* Tamanho consistente para o botão */
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .rodape {
     justify-content: space-around;
-    background-color: #333333; /* Mesmo tom do menu */
+    background-color: #333333;
     color: #FFA500;
     text-align: center;
     padding: 20px;
     border-top: 1px solid #333;
-    bottom: 0;
-    left: 0;
-    height: 40px;
-    position: fixed;
+    position: sticky; /* Rodapé se torna "grudado" */
+    bottom: 0; /* Fica na parte inferior da página */
     width: 100%;
+    height: auto; /* Ajuste automático conforme o conteúdo */
+    z-index: 10;
 }
 
 .rodape .social-media a {
@@ -106,4 +152,91 @@ html, body {
 
 .rodape .social-media a:hover {
     color: #FF8C00;
+}
+
+table {
+    width: 100%; /* Faz a tabela ocupar toda a largura disponível */
+    border-collapse: collapse; /* Elimina o espaço entre as células */
+    margin: 0 auto; /* Centraliza a tabela */
+}
+
+th, td {
+    padding: 15px; /* Aumenta o padding para mais espaço horizontal */
+    text-align: center; /* Centraliza o conteúdo nas células */
+    border: 1px solid #ddd; /* Adiciona uma borda leve para separar as células */
+}
+
+th {
+    background-color: #f4f4f4; /* Cor de fundo para os cabeçalhos */
+}
+
+/* Estilo do botão principal */
+.dropbtn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Estilo do container do dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Conteúdo do dropdown (inicialmente escondido) */
+.dropdown-content {
+    display: none; /* Inicialmente oculto */
+    position: absolute; /* Fica sobreposto ao conteúdo da célula */
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links do dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Hover nos links */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mostrar o conteúdo do dropdown ao clicar */
+.dropdown:hover .dropdown-content {
+    display: block; /* Mostra a dropdown ao passar o mouse sobre o botão */
+}
+
+.dropdown-btn {
+    background-color: #f8f8f8;
+    border: none;
+    color: #333;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Estilo do pop-up */
+.alert-popup {
+    position: fixed; /* Fixa o pop-up na tela */
+    top: 35px; /* Distância do topo */
+    right: 13px; /* Distância da direita */
+    background-color: #f8d7da; /* Cor de fundo do alerta (vermelho claro) */
+    color: #721c24; /* Cor do texto (vermelho escuro) */
+    padding: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 9999; /* Garante que o pop-up fique por cima de outros elementos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; /* Transição suave */
 }
