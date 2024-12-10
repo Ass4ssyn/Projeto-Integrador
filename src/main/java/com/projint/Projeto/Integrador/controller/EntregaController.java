@@ -27,6 +27,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/entrega")
@@ -117,43 +119,47 @@ public class EntregaController {
      * @param redirectAttributes
      * @return
      */
+    
+   
     @PostMapping("/confirmarEntrega/{id}")
     public String confirmarEntrega(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-        try {
-            // Buscar a entrega pelo ID
-            Entrega entrega = entregaRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Entrega não encontrada"));
-
-            // Verificar se o material já existe no estoque para a mesma obra
-            Estoque estoque = estoqueRepository.findByMaterialIdAndObraId(
-                    entrega.getMaterial().getId(),
-                    entrega.getObra().getId()
-            ).orElse(null);
-
-            if (estoque != null) {
-                // Atualizar quantidade do estoque existente
-                estoque.setQuantidadeEstoque(estoque.getQuantidadeEstoque() + entrega.getQuantidadeEntrega());
-            } else {
-                // Criar novo registro no estoque
-                estoque = new Estoque();
-                estoque.setMaterial(entrega.getMaterial());
-                estoque.setQuantidadeEstoque(entrega.getQuantidadeEntrega());
-                estoque.setObra(entrega.getObra());
-            }
-
-            // Salvar as alterações no estoque
-            estoqueRepository.save(estoque);
-
-            // Excluir a entrega
-            entregaRepository.delete(entrega);
-
-            redirectAttributes.addFlashAttribute("sucesso", "Entrega confirmada e adicionada ao estoque!");
-
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("erro", "Erro ao confirmar entrega: " + e.getMessage());
-        }
-
-        return "redirect:/cadastro";
+    try {
+    // Buscar a entrega pelo ID
+    Entrega entrega = entregaRepository.findById(id)
+    .orElseThrow(() -> new RuntimeException("Entrega não encontrada"));
+    
+    System.out.println(entrega.getId());
+    // Verificar se o material já existe no estoque para a mesma obra
+    Estoque estoque = estoqueRepository.findByMaterialIdAndObraId(
+    entrega.getMaterial().getId(),
+    entrega.getObra().getId()
+    ).orElse(null);
+    
+    if (estoque != null) {
+    // Atualizar quantidade do estoque existente
+    estoque.setQuantidadeEstoque(estoque.getQuantidadeEstoque() + entrega.getQuantidadeEntrega());
+    } else {
+    // Criar novo registro no estoque
+    estoque = new Estoque();
+    estoque.setMaterial(entrega.getMaterial());
+    estoque.setQuantidadeEstoque(entrega.getQuantidadeEntrega());
+    estoque.setObra(entrega.getObra());
+    }
+    System.out.println("Entrega encontrada: " + entrega);
+    System.out.println("Estoque existente: " + estoque);
+    // Salvar as alterações no estoque
+    estoqueRepository.save(estoque);
+    
+    // Excluir a entrega
+    entregaRepository.delete(entrega);
+    
+    redirectAttributes.addFlashAttribute("sucesso", "Entrega confirmada e adicionada ao estoque!");
+    
+    } catch (Exception e) {
+    redirectAttributes.addFlashAttribute("erro", "Erro ao confirmar entrega: " + e.getMessage());
+    }
+    
+    return "redirect:/listaEntrega";
     }
 
     @PostMapping("/atualizar")

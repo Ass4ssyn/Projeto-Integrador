@@ -37,7 +37,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </thead>
                 <tbody>
                     <tr th:each="entrega : ${entregas}">
-                        <td th:text="${entrega.id}">ID</td>
                         <td th:text="${entrega.material.descricaoMaterial}">Material</td>
                         <td th:text="${entrega.quantidadeEntrega}">Quantidade</td>
                         <td th:text="${entrega.dataRecebimento}">Data</td>
