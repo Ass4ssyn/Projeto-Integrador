@@ -22,6 +22,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </ul>
             </nav>
         </header>
+        <div class="page-wrapper">
         <main class="container">
             <h2>Lista de Entregas</h2>
             <table>
@@ -31,31 +32,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <th>Quantidade</th>
                         <th>Data</th>
                         <th>Local (Obra)</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="entrega : ${entregas}">
+                        <td th:text="${entrega.id}">ID</td>
                         <td th:text="${entrega.material.descricaoMaterial}">Material</td>
                         <td th:text="${entrega.quantidadeEntrega}">Quantidade</td>
                         <td th:text="${entrega.dataRecebimento}">Data</td>
                         <td th:text="${entrega.obra.nomeProprietario}">Obra</td>
                         <td>
-                            <a th:href="@{/entrega/editar/{id}(id=${entrega.id})}" class="btn btn-primary">Editar</a>
+                            <div class="dropdown">
+                                <button class="dropdown-btn">▼</button>
+                                <div class="dropdown-content">
+                                    <a th:href="@{/entrega/editar/{id}(id=${entrega.id})}">Editar</a>
+                                    <a th:href="@{/entrega/deletar/{id}(id=${entrega.id})}">Excluir</a>
+                                    <form th:action="@{'/entrega/confirmarEntrega/' + ${entrega.id}}" method="post" style="margin: 0;">
 
-                            <a th:href="@{/entrega/deletar/{id}(id=${entrega.id})}" class="btn btn-primary">Excluir</a>
-                        </td>
-
-                        <td>
-                            <form th:action="@{'/entrega/confirmarEntrega/' + ${entrega.id}}" method="post">
-                                <button type="submit">Entrega Recebida</button>
-                            </form>
+                                        <button type="submit" class="btn btn-success">Entrega Recebida</button>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="buttons-container">
-                <button onclick="location.href = '/menu'">Voltar ao Menu</button>
-            </div>
+
         </main>
         <footer class="rodape">
             <div class="social-media">
@@ -65,5 +68,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <a href="#">Instagram</a>
             </div>
         </footer>
+            </div>
+        <script src="/js/script.js"></script>
     </body>
 </html>
