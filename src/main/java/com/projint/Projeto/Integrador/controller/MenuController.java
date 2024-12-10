@@ -18,7 +18,10 @@ import com.projint.Projeto.Integrador.repository.MaterialRepository;
 import com.projint.Projeto.Integrador.repository.ObraRepository;
 import com.projint.Projeto.Integrador.service.MaterialService;
 import com.projint.Projeto.Integrador.service.ObraService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -101,7 +104,22 @@ public String consultarEstoque(
         // Retorna todos os estoques
         estoques = estoqueRepository.findAll();
     }
+    // Identificar estoques duplicados
+    List<String> alertasRepetidos = new ArrayList<>();
+    Map<String, List<Estoque>> agrupados = estoques.stream()
+            .collect(Collectors.groupingBy(e ->
+                e.getObra().getNomeProprietario() + ":" + e.getMaterial().getDescricaoMaterial()
+            ));
 
+    agrupados.forEach((chave, lista) -> {
+        System.out.println("Verificando chave: " + chave + ", Quantidade: " + lista.size());
+        if (lista.size() > 1) {
+            alertasRepetidos.add("Duplicado: " + lista.get(0).getObra().getNomeProprietario() +
+                                 " - " + lista.get(0).getMaterial().getDescricaoMaterial());
+        }
+    });
+
+    model.addAttribute("alertasRepetidos", alertasRepetidos);
     model.addAttribute("estoques", estoques);
     model.addAttribute("obras", obraRepository.findAll()); // Para exibir todas as obras
     model.addAttribute("filtro", filtro); // Para manter o filtro no formulário
